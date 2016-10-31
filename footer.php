@@ -11,18 +11,18 @@
 
 ?>
 
-	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'grupo-supricel' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'grupo-supricel' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'grupo-supricel' ), 'grupo-supricel', '<a href="http://www.agenciadelucca.com.br" rel="designer">Agência Delucca</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
-
-<?php wp_footer(); ?>
-
-</body>
+		</div><!-- #page -->
+		
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="<?php bloginfo("template_url"); ?>/js/jquery-1.12.4.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="<?php bloginfo("template_url"); ?>/js/bootstrap.min.js"></script>
+		<script src="<?php bloginfo("template_url"); ?>/js/jquery.bxslider.min.js"></script>
+		<script src="<?php bloginfo("template_url"); ?>/js/main.js"></script>
+	
+	<?php wp_footer(); ?>
+	
+	</body>
 </html>

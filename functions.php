@@ -44,7 +44,7 @@ function grupo_supricel_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'grupo-supricel' ),
+		'header' => esc_html__( 'Topo', 'grupo-supricel' ),
 	) );
 
 	/*
@@ -89,7 +89,7 @@ function grupo_supricel_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', 'grupo-supricel' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'grupo-supricel' ),
+		'description'   => esc_html__( 'Adicione widgets aqui.', 'grupo-supricel' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
