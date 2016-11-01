@@ -8,10 +8,92 @@
  *
  * @package Grupo_Supricel
  */
+ 
+// Criando argumentos para exibir conteúdo criado na seção "Conteúdo Footer"
+$footer_address_args = array(
+	"post_type"	=> "footer",
+	"orderby"	=> "modified",
+);
+// Aplicando argumentos
+$footer_address_query = new WP_Query( $footer_address_args );
 
 ?>
 
-
+			<footer id="footer">
+				<div class="footer-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12 clearfix">
+								<div class="footer-logo-box">
+									<img class="logo-img" src="<?php bloginfo("stylesheet_directory"); ?>/assets/img/logo/grupo-supricel-logo.png" alt="Grupo Supricel">
+								</div>
+								<span class="footer-line hidden-xs"><!-- empty --></span>
+							</div>
+							
+							<!-- Footer Content -->
+							<div class="col-md-12">
+								<div class="footer-content-box">
+									<div class="row">
+										
+										<?php
+											// Criando While Loop para exibir posts criados em "Conteúdo Footer"
+											// Passando a query de posts que foi criada para exibir esses posts
+											while($footer_address_query->have_posts()): $footer_address_query->the_post();
+												
+												// Criando uma variável para armazenar o slug da categoria que o post se encontra
+												// e aplicando ela em um "IF" para gerar HTML em diferentes casos
+												$term = wp_get_post_terms(get_the_ID(), "footer-categorias");
+												$term_slug = $term[0]->slug;
+												
+												// Começo do IF
+												if($term_slug == "footer-endereco") { ?>
+													
+													<div class="col-md-3 col-sm-6 footer-address">
+														<?php the_title("<h4>", "</h4>");
+														the_content(); ?>
+													</div>
+													
+												<?php } // End IF
+											endwhile; // End Loop
+											wp_reset_postdata(); // Resetando Post Data
+											
+											// Criando While Loop para exibir posts criados em "Conteúdo Footer"
+											// Passando a query de posts que foi criada para exibir esses posts
+											while($footer_address_query->have_posts()): $footer_address_query->the_post();
+												
+												// Criando uma variável para armazenar o slug da categoria que o post se encontra
+												// e aplicando ela em um "IF" para gerar HTML em diferentes casos
+												$term = wp_get_post_terms(get_the_ID(), "footer-categorias");
+												$term_slug = $term[0]->slug;
+												
+												// Começo do IF
+												if($term_slug !== "footer-endereco") { ?>
+													
+													<div class="col-sm-12 footer-news">
+														<?php the_content(); ?>
+													</div>
+													
+												<?php } // End IF
+											endwhile; // End Loop
+											wp_reset_postdata(); // Resetando Post Data
+										?>
+										
+										
+									</div>
+								</div>
+							</div>
+							<!-- Footer Content END-->
+							
+						</div>
+					</div>
+				</div>
+				<div class="copy">
+					<div class="container">
+						<p>Supricel &copy; Direitos Reservados <span><a href="http://agenciadelucca.com.br" title="Agência Delucca" target="_blank">AD</a></span></p>
+					</div>
+				</div>	
+			</footer>
+			
 		</div><!-- #page -->
 		
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
