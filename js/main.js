@@ -25,4 +25,31 @@ $(document).ready(function() {
     
   });
   
+  /*--------------------------------
+  // Home Sliders
+  --------------------------------*/
+  
+  /* Banner */
+  $(".home-banner").bxSlider({
+    mode: "fade",
+    controls: false,
+    auto: true,
+    autoHover: true,
+    pause: 7000,
+    pagerCustom: "#home-pager",
+  });
+  
+  /* Seguimentos */
+  $(".seguimentos-slider").bxSlider({
+    pager: false,
+    nextSelector: ".seg-next",
+    prevSelector: ".seg-prev",
+    auto: true,
+    autoHover: true,
+    pause: 7000,
+  });
+  
+  /* Clientes */
+  $(".home-clients").bxSlider();
+  
 });
