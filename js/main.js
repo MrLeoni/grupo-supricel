@@ -41,6 +41,7 @@ $(document).ready(function() {
   
   /* Seguimentos */
   $(".seguimentos-slider").bxSlider({
+    mode: "fade",
     pager: false,
     nextSelector: ".seg-next",
     prevSelector: ".seg-prev",
@@ -50,6 +51,118 @@ $(document).ready(function() {
   });
   
   /* Clientes */
-  $(".home-clients").bxSlider();
+  
+  // Criando função para detectar o tamanho da tela do dispositivo
+  // e retornar a margem adequada entre os slides, dependendo do tamanho
+  // da tela
+  var sliderMargin = function() {
+    
+    // Criando variáveis
+    // screenWidth = Método para detectar tamanho da tela
+    // margin = número em px de margin
+    var screenWidth = $(window).width();
+    var margin;
+    
+    // Checando tamanho da tela e retornando
+    // valor para margin
+    if(screenWidth < 990 && screenWidth > 460) {
+      
+      margin = 40;
+      
+    } else if (screenWidth < 460) {
+      
+      margin = 20;
+      
+    } else {
+      
+      margin = 90;
+      
+    }
+    
+    return margin;
+    // Retornando margin
+    
+  };
+  
+  $(".home-clients").bxSlider({
+    pager: false,
+    //auto: true,
+    autoHover: true,
+    pause: 5000,
+    nextSelector: ".clients-next",
+    prevSelector: ".clients-prev",
+    slideWidth: 200,
+    minSlides: 2,
+    maxSlides: 3,
+    moveSlides: 1,
+    slideMargin: sliderMargin() /* Executando função */
+  });
+  
+  
+  /*--------------------------------
+  // Requisição automática de CEP
+  
+  * Créditos: ViaCEP
+  * http://viacep.com.br
+  --------------------------------*/
+  
+  function limpa_formulário_cep() {
+	  // Limpa valores do formulário de cep.
+	  $("#rua").val("");
+	  $("#bairro").val("");
+	  $("#cidade").val("");
+	  $("#uf").val("");
+	  $("#ibge").val("");
+  }
+  
+  $("#cep").blur(function() {
+	  //Nova variável "cep" somente com dígitos.
+	  var cep = $(this).val().replace(/\D/g, '');
+	
+	  //Verifica se campo cep possui valor informado.
+	  if (cep != "") {
+	
+	      //Expressão regular para validar o CEP.
+	      var validacep = /^[0-9]{8}$/;
+	
+	      //Valida o formato do CEP.
+	      if(validacep.test(cep)) {
+	
+	          //Preenche os campos com "..." enquanto consulta webservice.
+	          $("#rua").val("...");
+	          $("#bairro").val("...");
+	          $("#cidade").val("...");
+	          $("#uf").val("...");
+	          $("#ibge").val("...");
+	
+	          //Consulta o webservice viacep.com.br/
+	          $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+	
+	              if (!("erro" in dados)) {
+	                  //Atualiza os campos com os valores da consulta.
+	                  $("#rua").val(dados.logradouro);
+	                  $("#bairro").val(dados.bairro);
+	                  $("#cidade").val(dados.localidade);
+	                  $("#uf").val(dados.uf);
+	                  $("#ibge").val(dados.ibge);
+	              } //end if.
+	              else {
+	                  //CEP pesquisado não foi encontrado.
+	                  limpa_formulário_cep();
+	                  alert("CEP não encontrado.");
+	              }
+	          });
+	      } //end if.
+	      else {
+	          //cep é inválido.
+	          limpa_formulário_cep();
+	          alert("Formato de CEP inválido.");
+	      }
+	  } //end if.
+	  else {
+	      //cep sem valor, limpa formulário.
+	      limpa_formulário_cep();
+	  }
+	});
   
 });

@@ -35,18 +35,29 @@ $home_seguimentos_args = array(
 $home_seguimentos_query = new WP_Query( $home_seguimentos_args );
 
 /*--------------------------
-* Clientes
+* Cases
 * -----------------------*/
 
-// Argumentos para criar uma query de "Conteúdo Home" custom posts
-// e aplicando somente posts com a taxonomia "Home Seguimentos"
-$home_clients_args = array(
-	"post_type"	=> "home",
-	"orderby"	=> "modified",
-	"tax_query"	=> array(array( "taxonomy" => "home-categorias", "field" => "slug", "terms" => "home-clientes"))
+// ACF Fields
+$post_title = get_field("home-post-title");
+$category = get_field("home-cat");
+
+// Utilizando a categoria digitada no ACF e obtendo o ID
+$cat = get_cat_ID("$category");
+
+// Obtendo o link da categoria
+$cat_link = get_category_link($cat);
+
+// Criando os argumentos dos posts de determinada categoria
+// e aplicando o ID da categoria como parametro
+$home_posts_args = array(
+	"post_type"	=> "post",
+	"posts_per_page"	=> 4,
+	"cat"	=> "$cat"
 );
 // Aplicando argumentos
-$home_clients_query = new WP_Query( $home_clients_args );
+$home_posts_query = new WP_Query( $home_posts_args );
+
 
 get_header(); ?>
 
@@ -138,8 +149,8 @@ get_header(); ?>
 									<div class="slider-item">
 										<div class="container">
 											<div class="row">
-												<div class="col-md-12">
-													<?php the_title("<h4>", "</h4>");
+												<div class="col-md-12 slabo">
+													<?php the_title("<h4 class='open mini-title'>", "</h4>");
 													the_content(); ?>
 												</div>
 												<div class="col-md-12">
@@ -161,7 +172,7 @@ get_header(); ?>
 									<?php
 										// Controle para avançar ou retroceder nos seguimentos
 									?>
-									<div class="seguimentos-controls">
+									<div class="custom-controls seguimentos">
 										<span class="seg-prev" href></span>
 										<span class="seg-next" href></span>
 									</div>
@@ -171,34 +182,49 @@ get_header(); ?>
 					</div>
 				</section>
 				
-				<section id="home-clients-slider">
-					<div class="home-clients-slider-wrapper">
-						<ul class="home-clients">
-							
-							<?php
-								while($home_clients_query->have_posts()): $home_clients_query->the_post(); ?>
-									<li><?php the_post_thumbnail("medium"); ?></li>
-								<?php endwhile;
-							?>
-							
-						</ul>
+				<section id="home-posts">
+					<div class="container">
+						<div class="home-posts-wrapper text-center">
+							<div class="row">
+								<div class="col-md-12">	
+									<div class="section-title">
+										<h3><?php echo $post_title; ?></h3>
+									</div>
+								</div>
+								<div class="col-md-offset-2 col-md-8">
+									<?php
+										// Criando post com a query de posts criada
+										while($home_posts_query->have_posts()): $home_posts_query->the_post(); ?>
+										
+											<div class="home-post-box text-left">
+												<div class="row">
+													<div class="col-sm-4 text-right hidden-xs">
+														<?php the_post_thumbnail("thumbnail"); ?>
+													</div>
+													<div class="col-sm-8 slabo">
+														<?php
+															the_title("<h4 class='open mini-title'><a href='".get_the_permalink()."' title='".get_the_title()."'>", "</a></h4>");
+															the_excerpt();
+														?>
+													</div>
+												</div>
+												<a href="<?php the_permalink(); ?>" title="Continuar Lendo"  class="read-more hidden-xs">Ler Mais</a>
+											</div>
+										
+										<?php
+										// Fim do Loop
+										endwhile;
+										wp_reset_postdata();
+									?>
+								</div>
+							</div>
+							<a class="supri-btn" href="<?php echo $cat_link; ?>" title="Ver Todos">Ver todos</a>
+						</div>
 					</div>
 				</section>
-
-			<?php
-			while ( have_posts() ) : the_post();
-
-				get_template_part( 'template-parts/content', 'page' );
-
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-
-			endwhile; // End of the loop.
-			?>
-			
-			
+				
+				<?php get_template_part( 'template-parts/content', 'clients' ); ?>
+				
 			</div>
 		</main><!-- #main -->
 	</div><!-- #primary -->
