@@ -92,8 +92,8 @@ function grupo_supricel_widgets_init() {
 		'description'   => esc_html__( 'Adicione widgets aqui.', 'grupo-supricel' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
 	) );
 }
 add_action( 'widgets_init', 'grupo_supricel_widgets_init' );
@@ -142,8 +142,8 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Register "footer" custom post type with "Categoria" custom taxonomy
  */
-add_action("init", "complementosPostType");
-function complementosPostType() {
+add_action("init", "footerPostType");
+function footerPostType() {
 	
 	// Registering new Custom Post Type
 	$labels_post = array( 
@@ -162,7 +162,7 @@ function complementosPostType() {
 	register_post_type("footer", $args_post);
 	
 	// Registering new Taxonomy
-	$labels_taxonomy = array( "name" => "Categorias", "singular_name" => "Categoria");
+	$labels_taxonomy = array( "name" => "Categorias do Footer", "singular_name" => "Categoria do Footer");
 	$args_taxonomy = array(
 		"labels"	=> $labels_taxonomy,
 		"show_ui"	=> true,
@@ -198,7 +198,7 @@ function homePostType() {
 	register_post_type("home", $args_post);
 	
 	// Registering new Taxonomy
-	$labels_taxonomy = array( "name" => "Categorias", "singular_name" => "Categoria");
+	$labels_taxonomy = array( "name" => "Categorias da Home", "singular_name" => "Categoria da Home");
 	$args_taxonomy = array(
 		"labels"	=> $labels_taxonomy,
 		"show_ui"	=> true,
@@ -208,5 +208,41 @@ function homePostType() {
 		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
 	);
 	register_taxonomy("home-categorias", "home", $args_taxonomy);
+	
+}
+
+/**
+ * Register "Complementos" custom post type with "Categoria" custom taxonomy
+ */
+add_action("init", "complementosPostType");
+function complementosPostType() {
+	
+	// Registering new Custom Post Type
+	$labels_post = array( 
+		"name" => "Complementos",
+		"singular_name" => "Complemento",
+		
+	);
+	$args_post = array(
+		"labels" => $labels_post,
+		"supports" => array("title", "editor", "thumbnail"),
+		"menu_position" => 22,
+		"menu_icon" => "dashicons-plus",
+		"public"	=> true,
+		"show_in_menu"	=> true,
+	);
+	register_post_type("complementos", $args_post);
+	
+	// Registering new Taxonomy
+	$labels_taxonomy = array( "name" => "Categorias de Complementos", "singular_name" => "Categoria de Complementos");
+	$args_taxonomy = array(
+		"labels"	=> $labels_taxonomy,
+		"show_ui"	=> true,
+		"show_in_menu"	=> true,
+		"show_tagcloud"	=> false,
+		"hierarchical"	=> true,
+		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
+	);
+	register_taxonomy("complementos-categorias", "complementos", $args_taxonomy);
 	
 }

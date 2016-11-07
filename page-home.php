@@ -12,6 +12,7 @@
 $home_banner_args = array(
 	"post_type"	=> "home",
 	"orderby"	=> "modified",
+	"posts_per_page"	=> 99,
 	"tax_query"	=> array(array( "taxonomy" => "home-categorias", "field" => "slug", "terms" => "home-banner"))
 );
 // Aplicando argumentos
@@ -29,6 +30,7 @@ $segmentos_title = get_field("home-segmentos");
 $home_seguimentos_args = array(
 	"post_type"	=> "home",
 	"orderby"	=> "modified",
+	"posts_per_page"	=> 99,
 	"tax_query"	=> array(array( "taxonomy" => "home-categorias", "field" => "slug", "terms" => "home-seguimentos"))
 );
 // Aplicando argumentos
@@ -191,11 +193,13 @@ get_header(); ?>
 										<h3><?php echo $post_title; ?></h3>
 									</div>
 								</div>
-								<div class="col-md-offset-2 col-md-8">
-									<?php
-										// Criando post com a query de posts criada
-										while($home_posts_query->have_posts()): $home_posts_query->the_post(); ?>
+							</div>
+							<div class="row">
+								<?php
+									// Criando post com a query de posts criada
+									while($home_posts_query->have_posts()): $home_posts_query->the_post(); ?>
 										
+										<div class="col-md-6">
 											<div class="home-post-box text-left">
 												<div class="row">
 													<div class="col-sm-4 text-right hidden-xs">
@@ -210,14 +214,15 @@ get_header(); ?>
 												</div>
 												<a href="<?php the_permalink(); ?>" title="Continuar Lendo"  class="read-more hidden-xs">Ler Mais</a>
 											</div>
-										
-										<?php
-										// Fim do Loop
-										endwhile;
-										wp_reset_postdata();
-									?>
-								</div>
+										</div>
+									
+									<?php
+									// Fim do Loop
+									endwhile;
+									wp_reset_postdata();
+								?>
 							</div>
+							
 							<a class="supri-btn" href="<?php echo $cat_link; ?>" title="Ver Todos">Ver todos</a>
 						</div>
 					</div>

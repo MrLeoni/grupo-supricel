@@ -13,6 +13,7 @@
 $footer_address_args = array(
 	"post_type"	=> "footer",
 	"orderby"	=> "modified",
+	"posts_per_page"	=> 99,
 );
 // Aplicando argumentos
 $footer_address_query = new WP_Query( $footer_address_args );

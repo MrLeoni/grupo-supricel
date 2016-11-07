@@ -50,58 +50,65 @@ $(document).ready(function() {
     pause: 7000,
   });
   
-  /* Clientes */
+  /*--------------------------------
+  // Default Carrossel
+  --------------------------------*/
   
-  // Criando função para detectar o tamanho da tela do dispositivo
-  // e retornar a margem adequada entre os slides, dependendo do tamanho
-  // da tela
-  var sliderMargin = function() {
-    
-    // Criando variáveis
-    // screenWidth = Método para detectar tamanho da tela
-    // margin = número em px de margin
+	// Função para checar a existência do elemento ".carrossel-default na página"
+	function blogSlider() {
+		
+		// Criando variáveis: 
+		// Armazenando o elemento em uma variável
+		var elementSlider = $(".carrossel-default");
+		// screenWidth = Metodo para detectar tamanho da tela
     var screenWidth = $(window).width();
+    // margin = número em px de margin
     var margin;
-    
-    // Checando tamanho da tela e retornando
-    // valor para margin
-    if(screenWidth < 990 && screenWidth > 460) {
-      
-      margin = 40;
-      
-    } else if (screenWidth < 460) {
-      
-      margin = 20;
-      
-    } else {
-      
-      margin = 90;
-      
-    }
-    
-    return margin;
-    // Retornando margin
-    
-  };
-  
-  $(".home-clients").bxSlider({
-    pager: false,
-    //auto: true,
-    autoHover: true,
-    pause: 5000,
-    nextSelector: ".clients-next",
-    prevSelector: ".clients-prev",
-    slideWidth: 200,
-    minSlides: 2,
-    maxSlides: 3,
-    moveSlides: 1,
-    slideMargin: sliderMargin() /* Executando função */
-  });
+		
+		// Detectando o tamanho da tela do dispositivo e retornar a margem
+	  // adequada entre os slides, dependendo do tamanho da tela
+	  var sliderMargin = function(screen, margin) {
+	    
+	    // Checando tamanho da tela e retornando
+	    // valor para margin
+	    if(screen < 990 && screen > 460) {
+	      margin = 40;
+	    } else if (screen < 460) {
+	      margin = 20;
+	    } else {
+	      margin = 90; 
+	    }
+	    return margin;
+	    // Retornando margin
+	  };
+		
+		// Checando sua existência
+		if(!elementSlider.length == 0) {
+		
+			// Se existir, aplicar .bxSlider à ele
+			elementSlider.bxSlider({
+			pager: false,
+			auto: true,
+			autoHover: true,
+			pause: 5000,
+			nextSelector: ".ctrl-next",
+			prevSelector: ".ctrl-prev",
+			slideWidth: 200,
+			minSlides: 2,
+			maxSlides: 3,
+			moveSlides: 1,
+			slideMargin: sliderMargin(screenWidth, margin) /* Executando função */
+			});
+		}
+		
+	}
+	blogSlider();
   
   
   /*--------------------------------
-  // Requisição automática de CEP
-  
+	* Preenchimento automático de 
+  * endereço através do CEP
+  *
   * Créditos: ViaCEP
   * http://viacep.com.br
   --------------------------------*/
@@ -115,54 +122,54 @@ $(document).ready(function() {
 	  $("#ibge").val("");
   }
   
-  $("#cep").blur(function() {
-	  //Nova variável "cep" somente com dígitos.
-	  var cep = $(this).val().replace(/\D/g, '');
-	
-	  //Verifica se campo cep possui valor informado.
-	  if (cep != "") {
-	
-	      //Expressão regular para validar o CEP.
-	      var validacep = /^[0-9]{8}$/;
-	
-	      //Valida o formato do CEP.
-	      if(validacep.test(cep)) {
-	
-	          //Preenche os campos com "..." enquanto consulta webservice.
-	          $("#rua").val("...");
-	          $("#bairro").val("...");
-	          $("#cidade").val("...");
-	          $("#uf").val("...");
-	          $("#ibge").val("...");
-	
-	          //Consulta o webservice viacep.com.br/
-	          $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
-	
-	              if (!("erro" in dados)) {
-	                  //Atualiza os campos com os valores da consulta.
-	                  $("#rua").val(dados.logradouro);
-	                  $("#bairro").val(dados.bairro);
-	                  $("#cidade").val(dados.localidade);
-	                  $("#uf").val(dados.uf);
-	                  $("#ibge").val(dados.ibge);
-	              } //end if.
-	              else {
-	                  //CEP pesquisado não foi encontrado.
-	                  limpa_formulário_cep();
-	                  alert("CEP não encontrado.");
-	              }
-	          });
-	      } //end if.
-	      else {
-	          //cep é inválido.
-	          limpa_formulário_cep();
-	          alert("Formato de CEP inválido.");
-	      }
-	  } //end if.
-	  else {
-	      //cep sem valor, limpa formulário.
-	      limpa_formulário_cep();
-	  }
+	$("#cep").blur(function() {
+		//Nova variável "cep" somente com dígitos.
+		var cep = $(this).val().replace(/\D/g, '');
+		
+		//Verifica se campo cep possui valor informado.
+		if (cep != "") {
+		
+			//Expressão regular para validar o CEP.
+			var validacep = /^[0-9]{8}$/;
+			
+			//Valida o formato do CEP.
+			if(validacep.test(cep)) {
+			
+				//Preenche os campos com "..." enquanto consulta webservice.
+				$("#rua").val("...");
+				$("#bairro").val("...");
+				$("#cidade").val("...");
+				$("#uf").val("...");
+				$("#ibge").val("...");
+				
+				//Consulta o webservice viacep.com.br/
+				$.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+				
+					if (!("erro" in dados)) {
+						//Atualiza os campos com os valores da consulta.
+						$("#rua").val(dados.logradouro);
+						$("#bairro").val(dados.bairro);
+						$("#cidade").val(dados.localidade);
+						$("#uf").val(dados.uf);
+						$("#ibge").val(dados.ibge);
+					} //end if.
+					else {
+						//CEP pesquisado não foi encontrado.
+						limpa_formulário_cep();
+						alert("CEP não encontrado.");
+					}
+				});
+			} //end if.
+			else {
+				//cep é inválido.
+				limpa_formulário_cep();
+				alert("Formato de CEP inválido.");
+			}
+		} //end if.
+		else {
+			//cep sem valor, limpa formulário.
+			limpa_formulário_cep();
+		}
 	});
   
 });
