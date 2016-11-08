@@ -11,28 +11,36 @@
  *
  * @package Grupo_Supricel
  */
+ 
+// Utilizando o thumbnail da página como banner
+$thumb_id = get_post_thumbnail_id();
+$thumb_url = wp_get_attachment_image_src($thumb_id, "full", true);
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
 
-			<?php
-			while ( have_posts() ) : the_post();
+<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
+		
+		<section class="banner" style="background: url(<?php echo $thumb_url[0]; ?>) no-repeat center">
+			<!-- Empty -->
+		</section>
+		
+		<section id="grupo" class="single-page-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<?php
+							while(have_posts()): the_post();
+								the_content();
+							endwhile;
+						?>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+	</main>
+</div>
 
-				get_template_part( 'template-parts/content', 'page' );
-
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-
-			endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_sidebar();
-get_footer();
+<?php get_footer(); ?>

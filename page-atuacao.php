@@ -22,7 +22,7 @@ get_header(); ?>
 			<!-- Empty -->
 		</section>
 		
-		<section id="atuacao">
+		<section id="atuacao" class="single-page-content">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
@@ -41,14 +41,14 @@ get_header(); ?>
 							
 							// Imagem
 							if ($side_img) { ?>
-							<div class="atuacao-side-img">
+							<div class="side-img">
 								<img src="<?php echo $side_img["url"]; ?>" alt="<?php echo $side_text["alt"]; ?>">
 							</div>
 							<?php }
 							
 							// Texto com borda
 							if($side_bordered) { ?>
-							<div class="atuacao-bordered-box">
+							<div class="bordered-box">
 								<?php echo $side_bordered; ?>
 							</div>
 							<?php } ?>

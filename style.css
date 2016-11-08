@@ -8,16 +8,13 @@ Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: grupo-supricel
-Tags:
+Tags: Supricel, Grupo, Piracicaba
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
 Grupo Supricel is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
-
-Normalizing styles have been helped along thanks to the fine work of
-Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 */
 
 /*--------------------------------------------------------------
@@ -698,7 +695,7 @@ li.menu-item-has-children:hover > .sub-menu{
 	width: 100%;
 	padding: 5px ;
 	margin: 0 0 4px;
-	background-color: rgba(255, 255, 255, 0.9);
+	background-color: #fff;
 	text-align: center;
 }
 
@@ -1141,33 +1138,33 @@ h1.entry-title {
 }
 
 /*-----------------------------
-7.X Atuacao
+7.X Atuacao & Grupo
 -----------------------------*/
 
-#atuacao {
+.single-page-content {
 	padding: 2% 0 4%;
 	border-bottom: 1px solid #dadada;
 	background-color: #fff;
 	color: #6b6b6b;
 }
 
-#atuacao h1,
-#atuacao h2,
-#atuacao h3,
-#atuacao h4,
-#atuacao h5,
-#atuacao h6 {
+.single-page-content h1,
+.single-page-content h2,
+.single-page-content h3,
+.single-page-content h4,
+.single-page-content h5,
+.single-page-content h6 {
 	margin-bottom: 7px;
 	font-weight: 700;
 }
 
-#atuacao h1 {
+.single-page-content h1 {
 	text-align: left;
 	font-size: 2.6em;
 	color: #214b8b;
 }
 
-#atuacao p {
+.single-page-content p {
 	font-family: "Slabo 27px", serif;
 	font-weight: 400;
 	font-size: 1.3em;
@@ -1182,8 +1179,8 @@ h1.entry-title {
 }
 
 .atuacao-side-text,
-.atuacao-side-img,
-.atuacao-bordered-box {
+.side-img,
+.bordered-box {
 	margin: 0 auto 4%;
 }
 
@@ -1191,16 +1188,21 @@ h1.entry-title {
 	text-align: justify;
 }
 
-.atuacao-side-img img {
+.side-img img {
 	display: block;
 	width: 100%;
 	height: auto;
 	margin: 0 auto;
 }
 
-.atuacao-bordered-box {
+.bordered-box {
 	padding: 5%;
 	border: 1px solid #6b6b6b;
+}
+
+#grupo .bordered-box {
+	padding: 4%;
+	margin: 2% 0 0;
 }
 
 /*-----------------------------
@@ -1493,10 +1495,18 @@ h1.entry-title {
     bottom: -5%;
 	}
 	
-	/* Atuacao */
+	/* Atuacao & Grupo */
 	
-	#atuacao h1 {
+	.single-page-content h1 {
 		font-size: 2.6em;
+	}
+	
+	#grupo img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    float: none;
+    margin: 0 0 30px;
 	}
 	
 	/* Footer */
