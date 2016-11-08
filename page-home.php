@@ -7,8 +7,8 @@
 * Banner
 * -----------------------*/
  
-// Argumentos para criar uma query de "Conteúdo Home" custom posts
-// e aplicando somente posts com a taxonomia "Home Banner"
+// Argumentos para criar uma query de "Conteúdo Home" tipo de post
+// e selecionando somente posts com a taxonomia "Home Banner"
 $home_banner_args = array(
 	"post_type"	=> "home",
 	"orderby"	=> "modified",
@@ -22,11 +22,11 @@ $home_banner_query = new WP_Query( $home_banner_args );
 * Segmentos
 * -----------------------*/
 
-// ACF Fields
+// ACF Fields para utilizar como título de seção
 $segmentos_title = get_field("home-segmentos");
 
-// Argumentos para criar uma query de "Conteúdo Home" custom posts
-// e aplicando somente posts com a taxonomia "Home Seguimentos"
+// Argumentos para criar uma query de "Conteúdo Home" tipo de posts
+// e selecionando somente posts com a taxonomia "Home Seguimentos"
 $home_seguimentos_args = array(
 	"post_type"	=> "home",
 	"orderby"	=> "modified",
@@ -37,21 +37,24 @@ $home_seguimentos_args = array(
 $home_seguimentos_query = new WP_Query( $home_seguimentos_args );
 
 /*--------------------------
-* Cases
+* Home Posts
 * -----------------------*/
 
 // ACF Fields
+// Título da seção de Posts
 $post_title = get_field("home-post-title");
+// Campo que o usuário preenche com uma categoria
 $category = get_field("home-cat");
 
-// Utilizando a categoria digitada no ACF e obtendo o ID
+// Obtendo o ID da categoria selecionada pelo usuário
 $cat = get_cat_ID("$category");
 
 // Obtendo o link da categoria
 $cat_link = get_category_link($cat);
 
-// Criando os argumentos dos posts de determinada categoria
-// e aplicando o ID da categoria como parametro
+// Criando os argumentos para a Query e
+// aplicando o ID da categoria escolhida 
+// pelo usuário como parâmetro
 $home_posts_args = array(
 	"post_type"	=> "post",
 	"posts_per_page"	=> 4,
@@ -228,7 +231,7 @@ get_header(); ?>
 					</div>
 				</section>
 				
-				<?php get_template_part( 'template-parts/content', 'clients' ); ?>
+				<?php get_template_part( 'template-parts/content', 'carrossel' ); ?>
 				
 			</div>
 		</main><!-- #main -->

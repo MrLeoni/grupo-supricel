@@ -7,40 +7,27 @@
 $thumb_id = get_post_thumbnail_id();
 $thumb_url = wp_get_attachment_image_src($thumb_id, "full", true);
 
-/**---------------------------------
-* Pegando os campos do Plugin ACF
-* para criar argumentos de query
-* dependendo da escolha do usuário
----------------------------------*/
+/**------------------------------------------------
+* Criando uma Query na qual o usuário, através de
+* um campo gerado pelo ACF Fields, escolhe os posts
+* que serão mostrados na página através da categoria
+-------------------------------------------------*/
 
+// Campo que o usuário inseriu a categoria
 $cat = get_field("blog-cat");
-$slider = get_field("blog-slider");
-
-
-// Criando argumentos para criar uma
-// query de posts
+// Pegando o ID da categoria escolhida pelo usuário
 $cat_ID = get_cat_ID("$cat");
+// Criando paginação, caso exista
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+// Argumentos da Query de posts
 $blog_args = array(
-	"cat"	=> "$cat_ID",
+	"cat"	=> "$cat_ID", /* Aplicando ID da categoria escolhida pelo usuário */
 	"paged"	=> $paged,
 );
 // Aplicando argumentos
 $blog_query = new WP_Query( $blog_args );
 
-// Criando argumentos para criar uma
-// query de posts para ser utilziada como
-// carrossel no final da página
-$carrossel_args = array(
-	"post_type"	=> "complementos",
-	"orderby"	=> "modified",
-	"tax_query"	=> array(array( "taxonomy" => "complementos-categorias", "field" => "slug", "terms" => "$slider"))
-);
-// Aplicando argumentos
-$carrossel_query = new WP_Query( $carrossel_args );
-
 get_header(); ?>
-
 
 
 <div id="primary" class="content-area">
@@ -107,7 +94,7 @@ get_header(); ?>
 						?>
 						
 						<div class="col-md-12">
-	           <nav class="pagination-wrapper clearfix">
+							<nav class="pagination-wrapper clearfix">
 						    <div class="prev posts-link">
 						      <?php echo get_next_posts_link( 'Publicações antigas >', $blog_query->max_num_pages ); ?>
 						    </div>
@@ -115,35 +102,13 @@ get_header(); ?>
 						      <?php echo get_previous_posts_link( '< Publicações novas' ); ?>
 						    </div>
 						  </nav>
-	          </div>
-						
-						<?php if($carrossel_query->have_posts()) { ?>
-						
-						<div class="col-md-12">
-							<div class="blog-carrossel-wrapper">
-								<ul class="carrossel-default">
-									
-									<?php while($carrossel_query->have_posts()): $carrossel_query->the_post(); ?>
-									
-										<li><?php the_post_thumbnail("medium"); ?></li>
-									
-									<?php endwhile;
-									wp_reset_postdata(); ?>
-								</ul>
-								<div class="carrossel-control">
-									<span class="ctrl-prev" href></span>
-									<span class="ctrl-next" href></span>
-								</div>
-							</div>
 						</div>
-						
-						<?php } ?>
-						
 					</div>
 				</div>
 			</div>
-			
 		</section>
+		
+		<?php get_template_part( 'template-parts/content', 'carrossel' ); ?>
 		
 	</main><!-- #main -->
 </div><!-- #primary -->

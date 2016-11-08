@@ -148,7 +148,7 @@ function footerPostType() {
 	// Registering new Custom Post Type
 	$labels_post = array( 
 		"name" => "Conteúdo Footer",
-		"singular_name" => "Conteúdo",
+		"singular_name" => "Conteúdo Footer",
 		
 	);
 	$args_post = array(
@@ -168,6 +168,7 @@ function footerPostType() {
 		"show_ui"	=> true,
 		"show_in_menu"	=> true,
 		"show_tagcloud"	=> false,
+		'show_admin_column' => true,
 		"hierarchical"	=> true,
 		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
 	);
@@ -184,7 +185,7 @@ function homePostType() {
 	// Registering new Custom Post Type
 	$labels_post = array( 
 		"name" => "Conteúdo Home",
-		"singular_name" => "Conteúdo",
+		"singular_name" => "Conteúdo Home",
 		
 	);
 	$args_post = array(
@@ -204,6 +205,7 @@ function homePostType() {
 		"show_ui"	=> true,
 		"show_in_menu"	=> true,
 		"show_tagcloud"	=> false,
+		'show_admin_column' => true,
 		"hierarchical"	=> true,
 		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
 	);
@@ -239,10 +241,52 @@ function complementosPostType() {
 		"labels"	=> $labels_taxonomy,
 		"show_ui"	=> true,
 		"show_in_menu"	=> true,
+		'show_admin_column' => true,
 		"show_tagcloud"	=> false,
 		"hierarchical"	=> true,
 		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
 	);
 	register_taxonomy("complementos-categorias", "complementos", $args_taxonomy);
+	
+}
+
+/**
+ * Register "Carrossel" custom post type with "Categoria" custom taxonomy
+ */
+add_action("init", "carrosselPostType");
+function carrosselPostType() {
+	
+	// Registering new Custom Post Type
+	$labels_post = array( 
+		"name" => "Carrosséis",
+		"singular_name" => "Carrossel",
+		
+	);	
+	$args_post = array(
+		"labels" => $labels_post,
+		"supports" => array("title", "editor", "thumbnail"),
+		"menu_position" => 23,
+		"menu_icon" => "dashicons-format-gallery",
+		"public"	=> true,
+		"publicly_queryable" => true,
+		"show_in_menu"	=> true,
+	);
+	register_post_type("carrossel", $args_post);
+	
+	// Registering new Taxonomy
+	$labels_taxonomy = array(
+		"name" => "Categorias de Carrosséis",
+		"singular_name" => "Categoria de Carrosséis",
+	);
+	$args_taxonomy = array(
+		"labels"	=> $labels_taxonomy,
+		"show_ui"	=> true,
+		"show_in_menu"	=> true,
+		"show_tagcloud"	=> false,
+		'show_admin_column' => true,
+		"hierarchical"	=> true,
+		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
+	);
+	register_taxonomy("carrossel-categorias", "carrossel", $args_taxonomy);
 	
 }

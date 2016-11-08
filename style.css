@@ -946,7 +946,7 @@ li.menu-item-has-children:hover > .sub-menu{
 
 /* Clientes */
 
-#home-clients-slider {
+#carrossel {
 	padding: 4% 0;
 	overflow: hidden;
 	background-color: #f0f0f0;	
@@ -1009,6 +1009,7 @@ li.menu-item-has-children:hover > .sub-menu{
 	padding: 0 0 30px;
 	border-bottom: 2px solid #214b8b;
 	margin: 0 0 30px;
+	background-color: #fff;
 }
 
 .post-normal {
@@ -1137,6 +1138,69 @@ h1.entry-title {
 .pagination-wrapper .post-navigation .nav-previous {
 	display: inline-block;
 	text-align: left;
+}
+
+/*-----------------------------
+7.X Atuacao
+-----------------------------*/
+
+#atuacao {
+	padding: 2% 0 4%;
+	border-bottom: 1px solid #dadada;
+	background-color: #fff;
+	color: #6b6b6b;
+}
+
+#atuacao h1,
+#atuacao h2,
+#atuacao h3,
+#atuacao h4,
+#atuacao h5,
+#atuacao h6 {
+	margin-bottom: 7px;
+	font-weight: 700;
+}
+
+#atuacao h1 {
+	text-align: left;
+	font-size: 2.6em;
+	color: #214b8b;
+}
+
+#atuacao p {
+	font-family: "Slabo 27px", serif;
+	font-weight: 400;
+	font-size: 1.3em;
+}
+
+#atuacao .atuacao-content-box {
+	margin-top: 0;
+}
+
+#atuacao .side-content p {
+	font-size: 1.2em;
+}
+
+.atuacao-side-text,
+.atuacao-side-img,
+.atuacao-bordered-box {
+	margin: 0 auto 4%;
+}
+
+.atuacao-side-text {
+	text-align: justify;
+}
+
+.atuacao-side-img img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.atuacao-bordered-box {
+	padding: 5%;
+	border: 1px solid #6b6b6b;
 }
 
 /*-----------------------------
@@ -1292,6 +1356,16 @@ h1.entry-title {
 		margin: 5% 0;
 	}
 	
+	/* Atuacao */
+	
+	#atuacao .atuacao-content-box {
+		margin-top: 5%;
+	}
+	
+	#atuacao p {
+		font-size: 1.2em;
+	}
+	
 	/* Footer */
 	
 	.footer-address {
@@ -1417,6 +1491,12 @@ h1.entry-title {
 	
 	.post-normal .read-more {
     bottom: -5%;
+	}
+	
+	/* Atuacao */
+	
+	#atuacao h1 {
+		font-size: 2.6em;
 	}
 	
 	/* Footer */
