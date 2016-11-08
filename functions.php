@@ -140,43 +140,6 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
- * Register "footer" custom post type with "Categoria" custom taxonomy
- */
-add_action("init", "footerPostType");
-function footerPostType() {
-	
-	// Registering new Custom Post Type
-	$labels_post = array( 
-		"name" => "Conteúdo Footer",
-		"singular_name" => "Conteúdo Footer",
-		
-	);
-	$args_post = array(
-		"labels" => $labels_post,
-		"supports" => array("title", "editor", "thumbnail"),
-		"menu_position" => 20,
-		"menu_icon" => "dashicons-media-default",
-		"public"	=> true,
-		"show_in_menu"	=> true,
-	);
-	register_post_type("footer", $args_post);
-	
-	// Registering new Taxonomy
-	$labels_taxonomy = array( "name" => "Categorias do Footer", "singular_name" => "Categoria do Footer");
-	$args_taxonomy = array(
-		"labels"	=> $labels_taxonomy,
-		"show_ui"	=> true,
-		"show_in_menu"	=> true,
-		"show_tagcloud"	=> false,
-		'show_admin_column' => true,
-		"hierarchical"	=> true,
-		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
-	);
-	register_taxonomy("footer-categorias", "footer", $args_taxonomy);
-	
-}
-
-/**
  * Register "home" custom post type with "Categoria" custom taxonomy
  */
 add_action("init", "homePostType");
@@ -191,7 +154,7 @@ function homePostType() {
 	$args_post = array(
 		"labels" => $labels_post,
 		"supports" => array("title", "editor", "thumbnail"),
-		"menu_position" => 21,
+		"menu_position" => 20,
 		"menu_icon" => "dashicons-media-default",
 		"public"	=> true,
 		"show_in_menu"	=> true,
@@ -214,39 +177,64 @@ function homePostType() {
 }
 
 /**
- * Register "Complementos" custom post type with "Categoria" custom taxonomy
+ * Register "footer" custom post type with "Categoria" custom taxonomy
  */
-add_action("init", "complementosPostType");
-function complementosPostType() {
+add_action("init", "footerPostType");
+function footerPostType() {
 	
 	// Registering new Custom Post Type
 	$labels_post = array( 
-		"name" => "Complementos",
-		"singular_name" => "Complemento",
+		"name" => "Conteúdo Footer",
+		"singular_name" => "Conteúdo Footer",
 		
 	);
 	$args_post = array(
 		"labels" => $labels_post,
 		"supports" => array("title", "editor", "thumbnail"),
-		"menu_position" => 22,
-		"menu_icon" => "dashicons-plus",
+		"menu_position" => 21,
+		"menu_icon" => "dashicons-media-default",
 		"public"	=> true,
 		"show_in_menu"	=> true,
 	);
-	register_post_type("complementos", $args_post);
+	register_post_type("footer", $args_post);
 	
 	// Registering new Taxonomy
-	$labels_taxonomy = array( "name" => "Categorias de Complementos", "singular_name" => "Categoria de Complementos");
+	$labels_taxonomy = array( "name" => "Categorias do Footer", "singular_name" => "Categoria do Footer");
 	$args_taxonomy = array(
 		"labels"	=> $labels_taxonomy,
 		"show_ui"	=> true,
 		"show_in_menu"	=> true,
-		'show_admin_column' => true,
 		"show_tagcloud"	=> false,
+		'show_admin_column' => true,
 		"hierarchical"	=> true,
 		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
 	);
-	register_taxonomy("complementos-categorias", "complementos", $args_taxonomy);
+	register_taxonomy("footer-categorias", "footer", $args_taxonomy);
+	
+}
+
+/**
+ * Register "Unidades" custom post type with "Categoria" custom taxonomy
+ */
+add_action("init", "unidadePostType");
+function unidadePostType() {
+	
+	// Registering new Custom Post Type
+	$labels_post = array( 
+		"name" => "Unidades",
+		"singular_name" => "Unidade",
+		
+	);	
+	$args_post = array(
+		"labels" => $labels_post,
+		"supports" => array("title", "editor", "thumbnail"),
+		"menu_position" => 22,
+		"menu_icon" => "dashicons-location-alt",
+		"public"	=> true,
+		"publicly_queryable" => true,
+		"show_in_menu"	=> true,
+	);
+	register_post_type("unidades", $args_post);
 	
 }
 

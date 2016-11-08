@@ -1138,6 +1138,53 @@ h1.entry-title {
 }
 
 /*-----------------------------
+7.X Unidades
+-----------------------------*/
+#unidades {
+	background-color: #f0f0f0;
+}
+
+/* Mapa do Brasil */
+
+.brasil-map-box {
+	display: block;
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+
+.brasil-map-box svg {
+	width: 180%;
+	height: auto;
+	position: relative;
+	left: -37%;
+}
+
+.estado {
+	transition: 0.2s ease;
+}
+
+.estado:hover {
+	cursor: pointer;
+	position: relative;
+	fill: rgb(0,174,239)!important;
+}
+
+.estado.active {
+	fill: rgb(0,174,239)!important;
+}
+
+.follow-box {
+	display: block;
+	padding: 5px;
+	background-color: transparent;
+	color: #fff;
+	position: absolute;
+	-webkit-transform: translate(-50%,-200%);
+	transform: translate(-50%,-200%);
+}
+
+/*-----------------------------
 7.X Atuacao & Grupo
 -----------------------------*/
 

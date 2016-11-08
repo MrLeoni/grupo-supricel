@@ -103,6 +103,37 @@ $(document).ready(function() {
 		
 	}
 	blogSlider();
+	
+	/*--------------------------------
+  // Unidades
+  --------------------------------*/
+  
+  /* Mapa do Brasil */
+  // Aplica classe "active" para mostrar qual estado esta ativo
+  function toggleClass() {
+    var menu = $('.brasil-map-box svg path');
+    menu.click(function () {
+      menu.not(this).removeClass('active');
+      $(this).toggleClass('active');
+    });
+  }
+  toggleClass();
+  
+  // Caixa que segue o mouse quando ele está em cima do mapa
+  $(".brasil-map-box").on('mousemove', function(e){
+    $('.follow-box').css({
+     left:  e.pageX,
+     top:   e.pageY
+    });
+  });
+  
+  // Exibe atributo do estado quando o mouse passa por cima d eum estado
+  $(".estado").hover(function() {
+    var nomeEstado = $(this).attr("data-state-info");
+    $(".follow-box").css("background-color", "#0b4d8e").html(nomeEstado);
+  }, function() {
+    $(".follow-box").css("background-color", "transparent").html(" ");
+  });
   
   
   /*--------------------------------
