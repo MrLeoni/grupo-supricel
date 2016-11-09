@@ -27,8 +27,8 @@ get_header(); ?>
 						?>
 					</div>
 					<div class="col-md-6">
-						<div class="contact-map-box">
-							<iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Rua%20Luis%20Silveira%20Pedreira%2C%20100&key=AIzaSyCHOQP_b4S5a2akoafsPXoky728zyAVjSM" allowfullscreen></iframe>
+						<div class="map-box">
+							<iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Rua%20Luis%20Silveira%20Pedreira%2C%20100&key=AIzaSyCHOQP_b4S5a2akoafsPXoky728zyAVjSM&zoom=15" allowfullscreen></iframe>
 						</div>
 					</div>
 				</div>

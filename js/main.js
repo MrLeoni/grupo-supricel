@@ -108,17 +108,7 @@ $(document).ready(function() {
   // Unidades
   --------------------------------*/
   
-  /* Mapa do Brasil */
-  // Aplica classe "active" para mostrar qual estado esta ativo
-  function toggleClass() {
-    var menu = $('.brasil-map-box svg path');
-    menu.click(function () {
-      menu.not(this).removeClass('active');
-      $(this).toggleClass('active');
-    });
-  }
-  toggleClass();
-  
+  /* Interações com o mapa do Brasil */
   // Caixa que segue o mouse quando ele está em cima do mapa
   $(".brasil-map-box").on('mousemove', function(e){
     $('.follow-box').css({
@@ -129,11 +119,72 @@ $(document).ready(function() {
   
   // Exibe atributo do estado quando o mouse passa por cima d eum estado
   $(".estado").hover(function() {
+  	// Guardando o valor do atributo "data-state-info" em uma variável,
+  	// armazenando apenas do estado que o mouse estiver em cima
     var nomeEstado = $(this).attr("data-state-info");
+    
+    // Aplicando o conteúdo da variável no elemento "follow-box"
     $(".follow-box").css("background-color", "#0b4d8e").html(nomeEstado);
   }, function() {
+  	// Se o mouse não está em cima de um estado, o elemento "follow-box" fica invisível
     $(".follow-box").css("background-color", "transparent").html(" ");
   });
+  
+  
+  // Engine que manipula elementos ao clicar sobre um estado no mapa
+  $(".estado").click(function() {
+  	
+  	/* Armazenando elementos importantes em variáveis */
+  	
+  	// Selecionando o elemento que foi clicado
+  	var element = $(this);
+  	// Selecionando o valor do atributo "data-state" do elemento clicado
+  	var sigla = element.attr("data-state");
+  	// Selecionando o elemento ".unidade-box" que possui i atributo "data-state" igual ao do elemento "element"
+  	var unidadeBox = $(".unidade-box[data-state='"+sigla+"']");
+  	// Selecionando o elemento ".unidade-content" dentro do elemento ".unidade-box" que possui o mesmo valor de "data-state" do elemento "element"
+  	var unidadeContent = $(".unidade-box[data-state='"+sigla+"'] .unidade-content");
+  	
+  	// Alternando entre classes quando o elemento "element" é clicado
+  	$(".estado").removeClass('active');
+  	element.toggleClass('active');
+  	
+  	// Escondendo todos os elementos ".unidade-content" e ".unidade-box" que estejam visíveis na página
+  	$(".unidade-content").animate({opacity: "0"}, 200, function() {
+  		$(".unidade-box").slideUp(400);
+  	});
+  	
+  	// Mostrando apenas o elemento ".unidade-box" e ".unidade-content" que tenham o mesmo "data-state" de "element"
+  	setTimeout(function() {
+  		unidadeBox.slideDown(400);
+  		unidadeContent.delay(200).animate({ opacity: "1"}, 200);
+  	}, 650);
+  	
+  });
+  
+  // Pega o endereço que o usuário digitou e aplica na URL do iframe do google maps
+  // Faz um scroll na página até o mapa
+  $(".address-btn").click(function() {
+  	
+  	/* Armazenando elementos */
+  	// Selecionando atributo "data-address" do elemento clicado
+  	var address = $(this).attr("data-address");
+  	// Selecionando elemento "#google-maps"
+  	var map = $("#google-maps");
+  	// Criando valor numérico para utilizar no scrollTop
+  	var mapOffset = map.offset().top - 150;
+  	
+  	// Aplica a string ao elemento "#google-maps", utilizando a variável "address"
+		map.attr("src", "https://www.google.com/maps/embed/v1/place?q=" + address + "&key=AIzaSyCHOQP_b4S5a2akoafsPXoky728zyAVjSM&zoom=15");
+		
+		// Faz o scroll até o elemento "#google-maps"
+		$('html,body').animate({
+	  	scrollTop: mapOffset },
+		'slow');
+		
+  });
+  
+  
   
   
   /*--------------------------------

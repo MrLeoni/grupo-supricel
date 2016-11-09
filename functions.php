@@ -236,6 +236,22 @@ function unidadePostType() {
 	);
 	register_post_type("unidades", $args_post);
 	
+	// Registering new Taxonomy
+	$labels_taxonomy = array(
+		"name" => "Estados",
+		"singular_name" => "Estado",
+	);
+	$args_taxonomy = array(
+		"labels"	=> $labels_taxonomy,
+		"show_ui"	=> true,
+		"show_in_menu"	=> true,
+		"show_tagcloud"	=> false,
+		'show_admin_column' => true,
+		"hierarchical"	=> true,
+		"capabilities"	=> array("manage_terms", "edit_terms", "delete_terms", "assign_terms"),
+	);
+	register_taxonomy("estados", "unidades", $args_taxonomy);
+	
 }
 
 /**

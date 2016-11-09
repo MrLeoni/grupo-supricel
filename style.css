@@ -30,7 +30,20 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 6.0 Media
 	6.1 Captions
 	6.2 Galleries
+	
 7.0 Author CSS
+	7.1 Setup
+	7.2 Reusable
+	7.3 Header
+	7.4 Home
+	7.5 Contact
+	7.6 Blog
+	7.7 Posts
+	7.8 Unidades
+	7.9 Atuacao & Grupo
+	7.10 Sidebar
+	7.11 Footer
+	7.12 Query
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 1.0 Navigation
@@ -410,6 +423,22 @@ ul {
 	border-top: 4px solid #214b8b;
 }
 
+.error-404 {
+	background-color: #f0f0f0;
+	padding: 0 0 8%;
+}
+
+.error-404 .page-header {
+	font-size: 2em;
+	border-color: #214b8b;
+	color: #214b8b;
+}
+
+.error-4040 .page-header h1.page-title {
+	font-size: 3em;
+	margin-bottom: 15px;
+}
+
 .bx-wrapper .bx-viewport {
 	box-shadow: none;
 	border: 0;
@@ -540,10 +569,12 @@ ul {
 .carrossel-control span {
 	-webkit-transition: 0.2s ease;
 	transition: 0.2s ease;
+	-webkit-filter: grayscale(1);
 	filter: grayscale(1);
 }
 
 .carrossel-control span:hover {
+	-webkit-filter: grayscale(0);
 	filter: grayscale(0);
 }
 
@@ -596,8 +627,14 @@ ul {
 	background-color: #00aeef;
 }
 
+.map-box iframe{
+	display: block;
+	width: 100%;
+	height: 600px;
+}
+
 /*-----------------------------
-7.X Header
+7.3 Header
 -----------------------------*/
 
 #header {
@@ -772,7 +809,7 @@ li.menu-item-has-children:hover > .sub-menu{
 }
 
 /*-----------------------------
-7.X Home
+7.4 Home
 -----------------------------*/
 
 /* Banner */
@@ -874,12 +911,14 @@ li.menu-item-has-children:hover > .sub-menu{
 }
 
 .seguimentos span {
+	-webkit-filter: grayscale(1);
 	filter: grayscale(1);
 	-webkit-transition: 0.2s ease;
 	transition: 0.2s ease;
 }
 
 .seguimentos span:hover {
+	-webkit-filter: none;
 	filter: none;
 }
 
@@ -950,18 +989,12 @@ li.menu-item-has-children:hover > .sub-menu{
 }
 
 /*-----------------------------
-7.X Contact
+7.5 Contact
 -----------------------------*/
 
 #contact {
 	padding: 3% 0;
 	background-color: #f0f0f0;
-}
-
-.contact-map-box iframe{
-	display: block;
-	width: 100%;
-	height: 600px;
 }
 
 .form-default.contact {
@@ -988,7 +1021,7 @@ li.menu-item-has-children:hover > .sub-menu{
 }
 
 /*-----------------------------
-7.X Blog
+7.6 Blog
 -----------------------------*/
 
 #blog {
@@ -1053,6 +1086,7 @@ li.menu-item-has-children:hover > .sub-menu{
 	bottom: -4%;
 	left: 50%;
 	right: initial;
+	-webkit-transform: translate(-50%);
 	transform: translate(-50%);
 }
 
@@ -1094,7 +1128,7 @@ li.menu-item-has-children:hover > .sub-menu{
 }
 
 /*-----------------------------
-7.X Posts
+7.7 Posts
 -----------------------------*/
 
 #single-post {
@@ -1138,13 +1172,110 @@ h1.entry-title {
 }
 
 /*-----------------------------
-7.X Unidades
+7.8 Unidades
 -----------------------------*/
+
 #unidades {
 	background-color: #f0f0f0;
 }
 
+.banner {
+	position: relative;
+	overflow: hidden;
+}
+
+.banner h1 {
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	font-size: 2.8em;
+	color: #fff;
+	font-weight: 700;
+	text-align: center;
+}
+
+.temp-title {
+	text-align: center;
+	color: #214b8b;
+	margin: 4% 0;
+}
+
+.unidades-wrapper {
+	min-height: 600px;
+	margin: 12% 0 0;
+}
+
+.unidade-box {
+	display: none;
+	margin: 0 0 3%;
+	border-bottom: 2px solid #214b8b;
+	padding: 3%;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.unidade-box.initial {
+	display: block;
+}
+
+.unidade-content {
+	display: block;
+	opacity: 0;
+}
+
+.unidade-box.initial .unidade-content {
+	opacity: 1;	
+}
+
+.unidade-box h3 {
+	margin: 0 0 15px;
+	color: #00aeef;
+}
+
+.address-btn {
+	display: inline-block;
+	padding: 10px;
+	border: 1px solid #214b8b;
+	margin: 20px 0 0;
+	position: relative;
+	z-index: 99;
+	overflow: hidden;
+	background-color: transparent;
+	color: #214b8b;
+}
+
+.fill:after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -100%;
+	z-index: -9;
+	background-color: #214b8b;
+	-webkit-transition: 0.2s ease;
+	transition: 0.2s ease;
+}
+
+.address-btn:hover,
+.address-btn.fill:hover:after,
+.address-btn:focus,
+.address-btn.fill:focus:after,
+.address-btn:active,
+.address-btn.fill:active:after {
+	left: 0;
+	color: #fff;
+	outline: none;
+}
+
 /* Mapa do Brasil */
+
+#unidades .map-box iframe{
+	height: 450px;
+}
 
 .brasil-map-box {
 	display: block;
@@ -1161,6 +1292,7 @@ h1.entry-title {
 }
 
 .estado {
+	-webkit-transition: 0.2s ease;
 	transition: 0.2s ease;
 }
 
@@ -1185,7 +1317,7 @@ h1.entry-title {
 }
 
 /*-----------------------------
-7.X Atuacao & Grupo
+7.9 Atuacao & Grupo
 -----------------------------*/
 
 .single-page-content {
@@ -1253,7 +1385,7 @@ h1.entry-title {
 }
 
 /*-----------------------------
-7.X Sidebar
+7.10 Sidebar
 -----------------------------*/
 
 .widget-title {
@@ -1280,7 +1412,7 @@ h1.entry-title {
 }
 
 /*-----------------------------
-7.X Footer
+7.11 Footer
 -----------------------------*/
 
 #footer {
@@ -1353,7 +1485,7 @@ h1.entry-title {
 }
 
 /*-----------------------------
-7.X Queries
+7.12 Queries
 -----------------------------*/
 
 @media (max-width: 1200px) {
@@ -1388,6 +1520,12 @@ h1.entry-title {
 
 @media (max-width: 990px) {
 	
+	/* Setup */
+	
+	.map-box iframe{
+		margin: 5% 0;
+	}
+	
 	/* Home */
 	
 	.home-banner-content-box h2 {
@@ -1399,12 +1537,6 @@ h1.entry-title {
     font-weight: 400;
 	}
 	
-	/* Contact */
-	
-	.contact-map-box iframe{
-		margin: 5% 0;
-	}
-	
 	/* Atuacao */
 	
 	#atuacao .atuacao-content-box {
@@ -1413,6 +1545,22 @@ h1.entry-title {
 	
 	#atuacao p {
 		font-size: 1.2em;
+	}
+	
+	/* Unidades */
+	
+	.unidades-wrapper {
+		min-height: 250px;
+		margin: -10% 0 0;
+	}
+	
+	.brasil-map-box svg {
+    top: -50px;
+	}
+	
+	#unidades .map-box iframe {
+    height: 300px;
+    margin: 5% 0 0;
 	}
 	
 	/* Footer */
@@ -1447,6 +1595,10 @@ h1.entry-title {
 	.form-default {
     padding: 5px 15px;
     margin: 0 0 15px;
+	}
+	
+	.map-box iframe{
+		height: 300px;
 	}
 	
 	/* Header */
@@ -1525,12 +1677,6 @@ h1.entry-title {
     text-align: center;
 	}
 	
-	/* Contact */
-	
-	.contact-map-box iframe{
-		height: 300px;
-	}
-	
 	/* Blog */
 	
 	.post-normal {
@@ -1590,6 +1736,12 @@ h1.entry-title {
 		display: block;
 		width: 100%;
 		height: auto;
+	}
+	
+	/* Unidades */
+	
+	#unidades .map-box iframe {
+    height: 260px;
 	}
 	
 }
