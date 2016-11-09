@@ -26,5 +26,10 @@ Tema desenvolvido para ser utilizado no WordPress. Trata-se de um site instituci
 
 ### Versão
 
+#### 1.0.0 - 09/11/2016
+#### Theme Release
+* Tema lançado e colocado e produção
+
+
 #### 0.0.0 - 31/10/2016
 * Tema criado, primeiro commit
