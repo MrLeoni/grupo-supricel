@@ -49,8 +49,10 @@ $category = get_field("home-cat");
 // Obtendo o ID da categoria selecionada pelo usuário
 $cat = get_cat_ID("$category");
 
-// Obtendo o link da categoria
-$cat_link = get_category_link($cat);
+// Obtendo o link da página
+$page = get_page_by_title("$category");
+$page_ID = $page->ID;
+$page_link = get_page_link($page_ID);
 
 // Criando os argumentos para a Query e
 // aplicando o ID da categoria escolhida 
@@ -226,7 +228,7 @@ get_header(); ?>
 								?>
 							</div>
 							
-							<a class="supri-btn" href="<?php echo $cat_link; ?>" title="Ver Todos">Ver todos</a>
+							<a class="supri-btn" href="<?php echo $page_link; ?>" title="Ver Todos">Ver Todos</a>
 						</div>
 					</div>
 				</section>

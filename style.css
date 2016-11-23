@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: Agência Delucca
 Author URI: http://www.agenciadelucca.com.br
 Description: Eficiência no desenvolvimento de grandes ideias
-Version: 1.0.0
+Version: 1.0.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: grupo-supricel
@@ -1043,7 +1043,7 @@ li.menu-item-has-children:hover > .sub-menu{
 }
 
 .post-normal {
-	height: 700px;
+	height: 570px;
 	padding: 0;
 	border-bottom: 2px solid #214b8b;
 	margin: 0 0 30px;
@@ -1083,7 +1083,7 @@ li.menu-item-has-children:hover > .sub-menu{
 }
 
 .post-normal .read-more {
-	bottom: -4%;
+	bottom: -5%;
 	left: 50%;
 	right: initial;
 	-webkit-transform: translate(-50%);
@@ -1291,19 +1291,26 @@ h1.entry-title {
 	left: -37%;
 }
 
-.estado {
+.brasil-map-box svg path{
+	fill: #fff;
+	stroke: #222;
+}
+
+.brasil-map-box svg path.estado {
+	fill: #00aeef;
+	stroke: #222;
 	-webkit-transition: 0.2s ease;
 	transition: 0.2s ease;
 }
 
-.estado:hover {
+.brasil-map-box svg path.estado:hover {
 	cursor: pointer;
 	position: relative;
-	fill: rgb(0,174,239)!important;
+	fill: #214b8b;
 }
 
-.estado.active {
-	fill: rgb(0,174,239)!important;
+.brasil-map-box svg path.estado.active {
+	fill: #214b8b;
 }
 
 .follow-box {

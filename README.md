@@ -26,10 +26,17 @@ Tema desenvolvido para ser utilizado no WordPress. Trata-se de um site instituci
 
 ### Versão
 
+#### 1.0.1 - 23/11/2016
+* Diminuido o espaço do box de posts nos modelos de páginas "Blog"
+* Corrigido link errado na home page "Ver Todos", na seção de exibição de posts dentro da home page.
+
+<br>
+
 #### 1.0.0 - 09/11/2016
 #### Theme Release
-* Tema lançado e colocado e produção
+* Tema lançado e colocado em produção
 
+<br>
 
 #### 0.0.0 - 31/10/2016
 * Tema criado, primeiro commit
