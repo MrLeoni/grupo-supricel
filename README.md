@@ -1,4 +1,4 @@
-# Grupo Supricel
+# [Grupo Supricel](http://www.gruposupricel.com.br/)
 tema em WordPress
 
 Criação: [Agência Delucca](http://www.agenciadelucca.com.br)
@@ -27,7 +27,7 @@ Tema desenvolvido para ser utilizado no WordPress. Trata-se de um site instituci
 ## Versões
 
 ### 1.0.2 - 29/11/16
-* Estado do Acre foi habilitado para uso através do mapa.
+* Estados do Acre e Mato Grosso do Sul receberam as funcionalidades dos demais estados do mapa.
 
 <br>
 
